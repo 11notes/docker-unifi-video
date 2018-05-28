@@ -16,8 +16,11 @@ RUN apt-get install -y wget dh-python distro-info-data file libmagic1 libmpdec2 
     && dpkg -i /tmp/uvc.deb \
     && rm -f /tmp/uvc.deb
 
+RUN mkdir -p /var/videos && \
+    ln -s /var/videos /var/lib/unifi-video/videos
+
 # ------ VOLUMES ------ #
-VOLUME ["/var/lib/unifi-video", "/var/log/unifi-video"]
+VOLUME ["/var/lib/unifi-video", "/var/log/unifi-video", "/var/videos"]
 
 # ------ CMD/START/STOP ------ #
 ENTRYPOINT ["/usr/sbin/unifi-video", "--nodetach", "start"]
