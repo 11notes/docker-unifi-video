@@ -3,7 +3,6 @@ FROM ubuntu:16.04
 ENV unifiVideoVersion=3.9.6
 ARG DEBIAN_FRONTEND=noninteractive
 
-
 # ------ RUN  ------ #
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -17,8 +16,12 @@ RUN apt-get install -y wget dh-python distro-info-data file libmagic1 libmpdec2 
     && dpkg -i /tmp/uvc.deb \
     && rm -f /tmp/uvc.deb
 
+ADD ./unifi-video.sh /usr/sbin/unifi-video
+
+RUN chmod 500 /usr/sbin/unifi-video
+
 # ------ VOLUMES ------ #
-VOLUME ["/var/lib/unifi-video", "/var/log/unifi-video"]
+VOLUME ["/var/lib/unifi-video", "/var/lib/unifi-video/videos", "/var/log/unifi-video"]
 
 # ------ CMD/START/STOP ------ #
 ENTRYPOINT ["/usr/sbin/unifi-video", "--nodetach", "start"]
