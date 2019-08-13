@@ -1,6 +1,6 @@
 # :: Header
 FROM ubuntu:16.04
-ENV unifiVideoVersion=3.10.1
+ENV unifiVideoVersion=3.10.6
 ARG DEBIAN_FRONTEND=noninteractive
 
 # :: Run
@@ -14,7 +14,7 @@ RUN mkdir -p /var/run/unifi-video
 
 RUN apt-get install -y wget curl dh-python distro-info-data file libmagic1 libmpdec2 libpython3-stdlib libpython3.5-minimal \
     libpython3.5-stdlib lsb-release mime-support psmisc python3 python3-minimal python3.5 python3.5-minimal sudo \
-    && wget -O /tmp/uvc.deb https://dl.ubnt.com/firmwares/unifi-video/v${unifiVideoVersion}/unifi-video.Ubuntu16.04_amd64.v${unifiVideoVersion}.deb \
+    && wget -O /tmp/uvc.deb https://dl.ubnt.com/firmwares/ufv/v${unifiVideoVersion}/unifi-video.Ubuntu16.04_amd64.v${unifiVideoVersion}.deb \
     && dpkg -i /tmp/uvc.deb \
     && rm -f /tmp/uvc.deb
 
