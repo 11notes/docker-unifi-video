@@ -1,6 +1,6 @@
 # :: Header
 FROM ubuntu:16.04
-ENV unifiVideoVersion=3.10.10
+ENV unifiVideoVersion=3.10.11
 ARG DEBIAN_FRONTEND=noninteractive
 
 # :: Run
